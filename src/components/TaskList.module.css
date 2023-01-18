@@ -1,0 +1,25 @@
+.header {
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header div {
+  color: var(--blue);
+  
+  font-weight: 700;
+}
+
+.header div + div {
+  color: var(--purple);
+}
+
+.header div strong {
+  color: var(--gray-200);
+  background: var(--gray-400);
+  padding: 0.13rem 0.5rem;
+
+  font-size: 0.75rem;
+
+  border-radius: 1rem;
+}
