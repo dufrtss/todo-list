@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 
 import { Header } from './components/Header'
-import { Info } from './components/Info'
+import { TaskForm } from './components/TaskForm'
 
 import styles from './App.module.css'
 
@@ -31,10 +31,7 @@ function App() {
       <Header />
       
       <div className={styles.wrapper}>
-        <Info />
-        <div>
-          {/* map list of tasks */}
-        </div>
+        <TaskForm />
       </div>
     </>
   )

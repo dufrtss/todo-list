@@ -1,20 +1,20 @@
-.info {
+.taskInfo {
   padding: 1.5rem 0;
   display: flex;
   justify-content: space-between;
 }
 
-.info div {
+.taskInfo div {
   color: var(--blue);
   
   font-weight: 700;
 }
 
-.info div + div {
+.taskInfo div + div {
   color: var(--purple);
 }
 
-.info div strong {
+.taskInfo div strong {
   color: var(--gray-200);
   background: var(--gray-400);
   padding: 0.13rem 0.5rem;

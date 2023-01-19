@@ -1,9 +1,9 @@
-import styles from './Info.module.css'
+import styles from './TaskInfo.module.css'
 
-export function Info() {
+export function TaskInfo() {
   return (
     <>
-      <section className={styles.info}>
+      <section className={styles.taskInfo}>
         <div>
           <span>Created tasks <strong>5</strong></span>
         </div>
