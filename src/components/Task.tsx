@@ -2,12 +2,17 @@ import { Trash } from "phosphor-react";
 
 import styles from './Task.module.css';
 
-export function Task() {
+interface TaskProps {
+  description: string;
+  isCompleted: boolean;
+}
+
+export function Task({ description, isCompleted }: TaskProps) {
   return (
     <div className={styles.task}>
-      <input id="checkbox" type="checkbox" />
-      <label htmlFor="checkbox" />
-      <p>Take the trash out.</p>
+      <input id={description} type="checkbox" />
+      <label htmlFor={description} />
+      <p>{description}</p>
       <button><Trash size={16} /></button>
     </div>
   )

@@ -1,11 +1,14 @@
 import { v4 as uuidv4 } from 'uuid'
 
 import { Header } from './components/Header'
+import { Task } from './components/Task'
 import { TaskForm } from './components/TaskForm'
 
 import styles from './App.module.css'
 
 import './global.css'
+import { TaskInfo } from './components/TaskInfo'
+import { CreateNewTask } from './components/CreateNewTask'
 
 const tasks = [
   {
@@ -30,9 +33,21 @@ function App() {
     <>
       <Header />
       
-      <div className={styles.wrapper}>
-        <TaskForm />
-      </div>
+      <main className={styles.wrapper}>
+        <CreateNewTask />
+
+        <TaskInfo />
+
+          {tasks.map((task) => {
+            return (
+              <Task
+                key={task.id}
+                description={task.description}
+                isCompleted={task.isCompleted}
+              />
+            )
+          })}
+      </main>
     </>
   )
 }
