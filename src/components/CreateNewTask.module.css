@@ -1,0 +1,68 @@
+.createNewTask {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 0.5rem;
+
+  margin-top: -28px;
+  margin-bottom: 64px;
+}
+
+.createNewTask input[type="text"] {
+  padding: 1rem 1rem;
+  
+  color: var(--gray-300);
+  background: var(--gray-500);
+
+  border: 0;
+  outline: 1px solid var(--gray-700);
+  border-radius: 8px;
+}
+
+.createNewTask input[type="text"]:focus {
+  color: var(--gray-100);
+}
+
+.createNewTask button[type="submit"] {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  color: var(--gray-100);
+  background: var(--dark-blue);
+  
+  font-size: 0.875rem;
+  font-weight: 700;
+  
+  border: 0;
+  border-radius: 8px;
+}
+
+.createNewTask button[type="submit"] {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  color: var(--gray-100);
+  background: var(--dark-blue);
+  
+  font-size: 0.875rem;
+  font-weight: 700;
+  
+  border: 0;
+  border-radius: 8px;
+
+  transition: background-color 0.1s;
+}
+
+.createNewTask button[type="submit"]:hover {
+  background: var(--blue);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+	.createNewTask button[type="submit"] {
+    justify-content: space-around;
+  }
+}
