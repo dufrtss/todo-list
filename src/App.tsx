@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { Header } from './components/Header'
@@ -15,9 +15,52 @@ import './global.css'
 function App() {
   const [tasks, setTasks] = useState([{
     id: uuidv4(),
-    description: "Go out for a walk.",
+    description: "Reward myself.",
+    isCompleted: false
+  }, {
+    id: uuidv4(),
+    description: "Finish the challenge.",
     isCompleted: false
   }]);
+  const [newTaskText, setNewTaskText] = useState('')
+
+  function handleCreateNewTask(event: FormEvent) {
+    event.preventDefault()
+
+    const newTask = {
+      id: uuidv4(),
+      description:  newTaskText,
+      isCompleted: false
+    }
+
+    setTasks([newTask, ...tasks]);
+    setNewTaskText('');
+  }
+
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('');
+    setNewTaskText(event.target.value)
+  }
+
+  function completeTask(taskToComplete: string) {
+    const tasksWithCompletedOne = tasks.filter((task) => {
+      if (task['id'] === taskToComplete) {
+        task['isCompleted'] = !task['isCompleted'];
+      }
+
+      return task
+    })
+
+    setTasks(tasksWithCompletedOne)
+  }
+
+  function deleteTask(taskToDelete: string) {
+    const tasksWithoutDeletedOne = tasks.filter((task) => {
+      return task['id'] != taskToDelete;
+    })
+
+    setTasks(tasksWithoutDeletedOne);
+  }
 
   const isTaskListEmpty = tasks.length === 0;
   
@@ -26,9 +69,13 @@ function App() {
       <Header />
       
       <main className={styles.wrapper}>
-        <CreateNewTask />
+        <CreateNewTask 
+          newTaskText={newTaskText} 
+          handleCreateNewTask={handleCreateNewTask} 
+          handleNewTaskChange={handleNewTaskChange} 
+        />
 
-        <TaskInfo />
+        <TaskInfo tasks={tasks} />
         
         {/* Check if tasks exist through the length of the array and map through existing ones */}
         {isTaskListEmpty ? 
@@ -45,6 +92,8 @@ function App() {
                 id={task.id}
                 description={task.description}
                 isCompleted={task.isCompleted}
+                onDeleteTask={deleteTask}
+                onCompleteTask={completeTask}
               />
             )
           })

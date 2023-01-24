@@ -64,6 +64,11 @@
   font-size: 0.875rem;
 }
 
+.completed {
+  color: var(--gray-300);
+  text-decoration: line-through;
+}
+
 .task button {
   display: flex;
   align-items: center;

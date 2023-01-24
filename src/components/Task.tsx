@@ -6,20 +6,27 @@ interface TaskProps {
   id: string;
   description: string;
   isCompleted: boolean;
+  onDeleteTask: (id: string) => void;
+  onCompleteTask: (id: string) => void;
 }
 
-export function Task({ id, description, isCompleted }: TaskProps) {
-  // function isTaskCompleted(isCompleted: boolean) {
-  //   console.log(isCompleted)
-  //   return isCompleted
-  // }
+export function Task({ id, description, isCompleted, onDeleteTask, onCompleteTask }: TaskProps) {
+  function handleDeleteTask() {
+    onDeleteTask(id);
+  }
+
+  function handleCompleteTask() {
+    onCompleteTask(id);
+  }
 
   return (
     <div className={styles.task}>
-      <input id={id} type="checkbox" onClick={() => isCompleted = true} />
+      <input id={id} type="checkbox" onClick={handleCompleteTask} />
       <label htmlFor={id} />
-      <p>{description}</p>
-      <button><Trash size={16} /></button>
+      {isCompleted ? <p className={styles.completed}>{description}</p> : <p>{description}</p>}
+      <button onClick={handleDeleteTask} title="Delete comment">
+        <Trash size={16} />
+      </button>
     </div>
   )
 }
