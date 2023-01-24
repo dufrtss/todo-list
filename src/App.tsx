@@ -1,34 +1,26 @@
+import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { Header } from './components/Header'
+import { CreateNewTask } from './components/CreateNewTask'
+import { TaskInfo } from './components/TaskInfo'
 import { Task } from './components/Task'
-import { TaskForm } from './components/TaskForm'
+
+import { Clipboard } from 'phosphor-react'
 
 import styles from './App.module.css'
 
 import './global.css'
-import { TaskInfo } from './components/TaskInfo'
-import { CreateNewTask } from './components/CreateNewTask'
 
-const tasks = [
-  {
+function App() {
+  const [tasks, setTasks] = useState([{
     id: uuidv4(),
     description: "Go out for a walk.",
     isCompleted: false
-  },
-  {
-    id: uuidv4(),
-    description: "Drink water.",
-    isCompleted: false
-  },
-  {
-    id: uuidv4(),
-    description: "Read a book.",
-    isCompleted: false
-  }
-]
+  }]);
 
-function App() {
+  const isTaskListEmpty = tasks.length === 0;
+  
   return (
     <>
       <Header />
@@ -37,16 +29,26 @@ function App() {
         <CreateNewTask />
 
         <TaskInfo />
-
-          {tasks.map((task) => {
+        
+        {/* Check if tasks exist through the length of the array and map through existing ones */}
+        {isTaskListEmpty ? 
+          <div className={styles.emptyList}>
+            <Clipboard size={56} />
+            <strong>Currently, you have no tasks</strong>
+            <p>Create new tasks above</p>
+          </div>  
+        :
+          tasks.map((task) => {
             return (
               <Task
                 key={task.id}
+                id={task.id}
                 description={task.description}
                 isCompleted={task.isCompleted}
               />
             )
-          })}
+          })
+        }
       </main>
     </>
   )
